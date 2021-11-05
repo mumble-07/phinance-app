@@ -1,0 +1,36 @@
+<div class="container-fluid px-6">
+  <div class="row">
+    <% running_total = 0 %> <% running_total_credit = 0 %> <%
+    running_total_debit = 0 %> <% @main_books.each do |mainbook| %> <% if
+    mainbook.user == current_user %> <% running_total =
+    calculate_total_balance(running_total,
+    calculate_balance(mainbook.debit_mainb, mainbook.credit_mainb)) %> <% end %>
+    <% end %>
+    <div>
+      <div class="card" id= "card_mainbook_header">
+        <div class="card-body" , id="mainbook__header">MAINBOOK ENTRIES</div>
+        <div
+          class="card-footer d-flex align-items-center justify-content-between"
+        >
+          <h5><%= "Total balance: "%><%= number_to_currency(running_total, unit: '₱ ') %></h5>
+        </div>
+      </div>
+      <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active", id="buttons__books">
+            <button type="button" class="btn btn-outline-light", id="book__buttons">
+                <%= link_to "Back", user_dashboard_path %>
+              </button>
+              <button type="button" class="btn btn-outline-light", id="book__buttons">
+                <%= link_to "Create Entry", mainbook_new_path %>
+              </button>
+               </button>
+              <button type="button" class="btn btn-outline-light", id="book__buttons">
+                <%= link_to "Export to PDF", mainbook_export_path(format: :pdf) %>
+              </button>
+            </li>
+          </ol>
+    </div>
+  </div>
+
+  <%= render 'all_mainbook_entries'%>
+</div>

@@ -1,0 +1,30 @@
+<section class="p-3 my-container">
+  <div class="books-table-container">
+    <div class="container">
+      <div class="card-body", id = "minibook__entry__table">
+        <div class="table-responsive">
+          <table class="table table-borderless text-white mb-0">
+            <thead>
+              <tr>
+              <td class="label_book_header">Minibook Name</td>
+              </tr>
+            </thead>
+            <tbody>
+                <% @mini_books.each do |minibook| %>
+                <% if minibook.user == current_user %>
+              <tr scope="column">
+                <td class="label_book_content_minib"><%= minibook.minibook_name %></td>
+                <td>
+                  <button type="button" class="btn btn-outline-light", id="table__inside__buttons_minib"><%= link_to 'View Entries', mini_book_minibook_entries_path(mini_book_id: minibook.id) %></button>
+                  <button type="button" class="btn btn-outline-light", id="table__inside__buttons_minib"><%= link_to "Edit", edit_mini_book_path(minibook.id) %></button>
+                  <button type="button" class="btn btn-outline-light", id="table__inside__buttons_minib"><%= link_to "Delete", mini_book_path(minibook.id), method: :delete, :data => { :confirm => "Are you sure?" } %></button>
+                </td>
+              </tr>
+                <% end %> 
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
